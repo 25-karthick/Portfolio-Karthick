@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Karthick M — AI / Full-Stack Developer Portfolio</title>
+  <meta name="description" content="Portfolio of Karthick M — B.Tech IT (2027). AI projects: YOLOv8 accident detection, Smart Eyes CCTV analytics, LifeBand+ emergency smart band, Sign Language Recognition, Anonymous Reporting System, and more."/>
+  <meta property="og:title" content="Karthick M — Portfolio" />
+  <meta property="og:description" content="AI + Full-Stack projects, hackathons, and research prototypes." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#0f172a;
+      --muted:#94a3b8;
+      --text:#e2e8f0;
+      --brand:#38bdf8;
+      --accent:#8b5cf6;
+      --card:#0b1220;
+      --ring:rgba(56,189,248,.45);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b1220 0%,#0b1220 40%,#0f172a 100%);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:rgba(11,18,32,.6);backdrop-filter:blur(8px);border-bottom:1px solid rgba(148,163,184,.1);z-index:10}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .nav a{margin-left:18px;font-weight:600;color:#cbd5e1}
+    .nav a.active{color:#fff;text-decoration:underline}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:40px;height:40px;border-radius:12px;background:conic-gradient(from 180deg at 50% 50%, #38bdf8, #8b5cf6, #22c55e, #38bdf8);box-shadow:0 0 0 4px rgba(56,189,248,.15)}
+    .tag{font-size:12px;color:var(--muted)}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;padding:32px 0}
+    .hero .card{background:linear-gradient(180deg,rgba(56,189,248,.08),rgba(139,92,246,.08));border:1px solid rgba(148,163,184,.15);border-radius:18px;padding:22px}
+    .hero h1{margin:0;font-size:38px;line-height:1.15}
+    .hero p{color:#cbd5e1}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(148,163,184,.25);border-radius:999px;background:rgba(15,23,42,.6);color:#e2e8f0;font-size:13px;margin:4px 6px 0 0}
+    .cta{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:#0b1220;color:#fff;font-weight:600}
+    .btn.primary{background:linear-gradient(90deg,#38bdf8,#8b5cf6);border-color:transparent}
+    section{padding:24px 0}
+    h2{font-size:24px;margin:6px 0 14px}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .card{background:rgba(2,6,23,.6);border:1px solid rgba(148,163,184,.15);border-radius:16px;padding:18px}
+    .card:hover{box-shadow:0 0 0 3px var(--ring)}
+    .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .kpi .card{padding:16px;text-align:center}
+    .muted{color:var(--muted)}
+    .pill{display:inline-block;background:rgba(56,189,248,.12);color:#c7e7ff;border:1px solid rgba(56,189,248,.35);padding:6px 10px;border-radius:999px;font-size:12px;margin:4px 6px 0 0}
+    .stack .pill{background:rgba(139,92,246,.12);border-color:rgba(139,92,246,.35);color:#e9d5ff}
+    .project{grid-column:span 6}
+    .project h3{margin:0 0 6px}
+    .project .meta{font-size:12px;color:var(--muted)}
+    .project .desc{color:#cbd5e1;margin:8px 0 10px}
+    .timeline{border-left:2px solid rgba(148,163,184,.2);padding-left:16px}
+    .titem{margin:0 0 18px;position:relative}
+    .titem::before{content:"";position:absolute;left:-10px;top:4px;width:10px;height:10px;background:linear-gradient(90deg,#38bdf8,#8b5cf6);border-radius:50%}
+    .footer{padding:28px 0;color:#94a3b8;border-top:1px solid rgba(148,163,184,.1);margin-top:24px}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+    .filters button{padding:6px 10px;border-radius:999px;border:1px solid rgba(148,163,184,.25);background:#0b1220;color:#cbd5e1;cursor:pointer}
+    .filters button.active{background:linear-gradient(90deg,#38bdf8,#8b5cf6);color:#081018;border-color:transparent}
+    .badges{margin-top:8px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .notice{border-left:3px solid #38bdf8;background:rgba(56,189,248,.08);padding:10px 12px;border-radius:10px;margin-top:10px}
+    @media (max-width: 960px){
+      .hero{grid-template-columns:1fr}
+      .project{grid-column:span 12}
+      .kpi{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Karthick M",
+    "jobTitle":"AI / Full-Stack Developer (Student)",
+    "alumniOf":{"@type":"CollegeOrUniversity","name":"B.Tech (IT), Graduation 2027"},
+    "knowsAbout":["Computer Vision","YOLOv8","Flutter","Django","React (learning)","Python","Java","C","Dart","MySQL","MongoDB"],
+    "url":"https://your-domain.example",
+    "sameAs":["https://github.com/25-karthick","https://www.linkedin.com/in/karthick-m2505"]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div style="font-weight:800;letter-spacing:.2px">Karthick M</div>
+          <div class="tag">AI • Full-Stack • 2027 Graduate</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#projects" class="active">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="card">
+        <h1>Building AI products that see, sense, and respond in the real world.</h1>
+        <p class="muted">B.Tech IT (2027) • Tier-II college • CGPA 7.8 • On a path to become a Django/MERN developer. I enjoy converting problem statements into working, measurable prototypes.</p>
+        <div class="badges">
+          <span class="chip">🚀 Seeking: Software Engineer (On-site)</span>
+          <span class="chip">📍 India</span>
+          <span class="chip">⚒️ Open to internships</span>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="#contact">Get in touch</a>
+          <a class="btn" href="#projects">View projects</a>
+          <a class="btn" href="#" id="resumeLink">Download résumé</a>
+        </div>
+        <div class="notice">Tip: replace the résumé link & contact info after you share them with me.</div>
+      </div>
+      <div class="card">
+        <div class="kpi">
+          <div class="card"><div class="muted">Projects</div><div style="font-size:26px;font-weight:800">10+</div></div>
+          <div class="card"><div class="muted">Hackathons</div><div style="font-size:26px;font-weight:800">3+</div></div>
+          <div class="card"><div class="muted">Core Skills</div><div style="font-size:26px;font-weight:800">CV • Backend</div></div>
+          <div class="card"><div class="muted">Learning</div><div style="font-size:26px;font-weight:800">MERN</div></div>
+        </div>
+        <div style="margin-top:12px">
+          <span class="pill">YOLOv8</span>
+          <span class="pill">OpenCV</span>
+          <span class="pill">Flutter</span>
+          <span class="pill">Django</span>
+          <span class="pill">MySQL</span>
+          <span class="pill">MongoDB</span>
+          <span class="pill">REST APIs</span>
+          <span class="pill">Firebase</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2>Featured Projects</h2>
+      <div class="filters" aria-label="Project filters">
+        <button class="active" data-filter="all">All</button>
+        <button data-filter="computer-vision">Computer Vision</button>
+        <button data-filter="full-stack">Full-Stack</button>
+        <button data-filter="mobile">Mobile</button>
+        <button data-filter="iot">IoT/Hardware</button>
+      </div>
+      <div class="grid">
+        <!-- 1 -->
+        <article class="card project" data-tags="computer-vision full-stack">
+          <h3>Accident Detection with YOLOv8 → Hospital Auto-Alert</h3>
+          <div class="meta">Computer Vision • Python • YOLOv8 • Email Integration</div>
+          <p class="desc">Real-time accident detection from CCTV using YOLOv8; triggers automated email alerts to nearby hospitals with snapshot evidence and location metadata.</p>
+          <div class="stack">
+            <span class="pill">Python</span><span class="pill">YOLOv8</span><span class="pill">OpenCV</span><span class="pill">SMTP</span>
+          </div>
+        </article>
+        <!-- 2 -->
+        <article class="card project" data-tags="computer-vision iot">
+          <h3>Smart Eyes: Intelligent CCTV Analytics</h3>
+          <div class="meta">CyberPeace Challenge • Face/Vehicle recognition • Behavior analytics</div>
+          <p class="desc">Pipeline for real-time CCTV analytics: face/vehicle recognition, behavior analysis, and predictive alerts to improve campus and city safety.</p>
+          <div class="stack">
+            <span class="pill">Detection/Tracking</span><span class="pill">Feature Extraction</span><span class="pill">Alert Rules</span>
+          </div>
+        </article>
+        <!-- 3 -->
+        <article class="card project" data-tags="iot mobile">
+          <h3>LifeBand+ — AI-Powered Emergency Response Smart Band</h3>
+          <div class="meta">Healthcare & Life Sciences • Hardware concept + ML alerts</div>
+          <p class="desc">Smart wearable concept for remote/rural healthcare. Detects anomalies and escalates emergencies through connected services.</p>
+          <div class="stack">
+            <span class="pill">Sensors</span><span class="pill">Edge ML (concept)</span><span class="pill">Alerting</span>
+          </div>
+        </article>
+        <!-- 4 -->
+        <article class="card project" data-tags="full-stack">
+          <h3>Anonymous Student Reporting System (Web)</h3>
+          <div class="meta">Django (backend) • Role-based Admin • Escalation Rules</div>
+          <p class="desc">Secure platform for students to report campus safety issues. Roles: Super Admin & Department Admin; custom notifications; audit logs; edit-twice policy.</p>
+          <div class="stack">
+            <span class="pill">Django</span><span class="pill">RBAC</span><span class="pill">MySQL</span><span class="pill">Audit Trails</span>
+          </div>
+        </article>
+        <!-- 5 -->
+        <article class="card project" data-tags="full-stack">
+          <h3>Digital Documentation & Record Management — Sakthi Auto (SH18)</h3>
+          <div class="meta">Workflow mapping • Digital sign-offs • Escalations • PDF generation</div>
+          <p class="desc">Digitizes department-wise processes, supports real-time data entry, document versioning, and compliance audit trails with attachments.</p>
+          <div class="stack">
+            <span class="pill">React/Angular</span><span class="pill">Django/Node</span><span class="pill">MySQL/MongoDB</span>
+          </div>
+        </article>
+        <!-- 6 -->
+        <article class="card project" data-tags="computer-vision">
+          <h3>Sign Language Recognition (Demo)</h3>
+          <div class="meta">AI Product Demo • CV • Gesture Classification</div>
+          <p class="desc">Prototype that recognizes sign language gestures and translates them into text for accessibility showcases.</p>
+          <div class="stack">
+            <span class="pill">Mediapipe/OpenCV</span><span class="pill">Classifier</span><span class="pill">Demo UX</span>
+          </div>
+        </article>
+        <!-- 7 -->
+        <article class="card project" data-tags="full-stack">
+          <h3>Smart Email Enhancer</h3>
+          <div class="meta">Gmail Viewer • Categorization & Sensitive-summary</div>
+          <p class="desc">Filters emails into Jobs, Ads, Inform, Meeting based on keywords; sensitive mails summarized into single-line briefs using AI summarization.</p>
+          <div class="stack">
+            <span class="pill">REST</span><span class="pill">Keyword Rules</span><span class="pill">Summarization</span>
+          </div>
+        </article>
+        <!-- 8 -->
+        <article class="card project" data-tags="computer-vision">
+          <h3>Wildlife & Wildfire Monitoring (AI)</h3>
+          <div class="meta">Vision alerts • Early detection</div>
+          <p class="desc">Monitoring and alert system for wildlife intrusions and wildfire signs using camera feeds and rule-based escalation.</p>
+          <div class="stack">
+            <span class="pill">CV</span><span class="pill">Alert Engine</span><span class="pill">Maps (concept)</span>
+          </div>
+        </article>
+        <!-- 9 -->
+        <article class="card project" data-tags="full-stack">
+          <h3>Crime Hotspot Prediction (In-progress)</h3>
+          <div class="meta">Spatio-temporal patterns • Risk mapping</div>
+          <p class="desc">Exploration of hotspot modeling to assist policing and community safety planning.</p>
+          <div class="stack">
+            <span class="pill">Python</span><span class="pill">Geo Data</span><span class="pill">Forecasting (exp)</span>
+          </div>
+        </article>
+        <!-- 10 -->
+        <article class="card project" data-tags="mobile">
+          <h3>Flutter Mini-Apps & REST Demos</h3>
+          <div class="meta">Dice Roll • Quiz • REST API clients</div>
+          <p class="desc">Small Flutter apps to practice UI, state, and API consumption as foundations for larger products.</p>
+          <div class="stack">
+            <span class="pill">Flutter</span><span class="pill">Dart</span><span class="pill">REST</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="grid">
+        <div class="card" style="grid-column:span 6">
+          <h3>Languages</h3>
+          <div class="stack">
+            <span class="pill">Python</span><span class="pill">Java</span><span class="pill">C</span><span class="pill">Dart</span><span class="pill">JavaScript (learning)</span>
+          </div>
+          <p class="muted">Comfort: DSA 5/10 (improving). Communication 7/10.</p>
+        </div>
+        <div class="card" style="grid-column:span 6">
+          <h3>Frameworks & Tools</h3>
+          <div class="stack">
+            <span class="pill">YOLOv8</span><span class="pill">OpenCV</span><span class="pill">Flutter</span><span class="pill">Django</span><span class="pill">React (learning)</span><span class="pill">Node.js (learning)</span>
+            <span class="pill">Firebase</span><span class="pill">REST</span><span class="pill">Git & GitHub</span>
+          </div>
+        </div>
+        <div class="card" style="grid-column:span 6">
+          <h3>Databases</h3>
+          <div class="stack">
+            <span class="pill">MySQL</span><span class="pill">MongoDB</span>
+          </div>
+        </div>
+        <div class="card" style="grid-column:span 6">
+          <h3>Interests</h3>
+          <div class="stack">
+            <span class="pill">Edge AI</span><span class="pill">Safety & Security</span><span class="pill">Gov/Enterprise Workflows</span><span class="pill">Healthcare</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <h2>Experience & Activities</h2>
+      <div class="timeline">
+        <div class="titem">
+          <strong>CyberPeace Challenge 2 — Smart Eyes</strong>
+          <div class="muted">Real-time CCTV analytics with recognition and predictive alerts.</div>
+        </div>
+        <div class="titem">
+          <strong>AI Product Demo — Sign Language Recognition</strong>
+          <div class="muted">Prepared structured PPT and product demo strategy to win first prize.</div>
+        </div>
+        <div class="titem">
+          <strong>SH18 — Sakthi Auto, Digital Records</strong>
+          <div class="muted">Digitization, workflow mapping, escalation, audit trails, PDF generation.</div>
+        </div>
+        <div class="titem">
+          <strong>Placement Prep Journey</strong>
+          <div class="muted">Daily plan across DSA, Aptitude, Core CS; target MNC: Infosys; on-site preference.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <h2>Education</h2>
+      <div class="card">
+        <strong>B.Tech — Information Technology</strong> (Graduating 2027)
+        <div class="muted">Tier-II College • CGPA: 7.8</div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="card">
+        <p class="muted">Reach out to me here:</p>
+        <ul>
+          <li>Email: <a id="email" href="mailto:karthick2505mk@gmail.com">karthick2505mk@gmail.com</a></li>
+          <li>GitHub: <a id="github" href="https://github.com/25-karthick" target="_blank" rel="noreferrer">github.com/25-karthick</a></li>
+          <li>LinkedIn: <a id="linkedin" href="https://www.linkedin.com/in/karthick-m2505" target="_blank" rel="noreferrer">linkedin.com/in/karthick-m2505</a></li>
+          <li>Location: India (open to on-site roles)</li>
+        </ul>
+        <div class="badges">
+          <span class="chip">Available for internships</span>
+          <span class="chip">Open to collaborations</span>
+        </div>
+      </div>
+    </section>
+
+    
+    <footer class="footer">
+      <div>© <span id="year"></span> Karthick M •</div>
+    </footer>
+  </main>
+
+  <script>
+    // Simple filter
+    const buttons = document.querySelectorAll(".filters button");
+    const cards = document.querySelectorAll(".project");
+    buttons.forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        buttons.forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        const tag = btn.dataset.filter;
+        cards.forEach(c=>{
+          if(tag==="all" || c.dataset.tags.includes(tag)){ c.style.display="block"; }
+          else { c.style.display="none"; }
+        });
+        location.hash="#projects";
+      });
+    });
+
+    // Dynamic year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Placeholder resume link (replace later)
+    document.getElementById("resumeLink").setAttribute("href", "#");
+  </script>
+</body>
+</html>
